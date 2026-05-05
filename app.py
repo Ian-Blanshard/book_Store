@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 # instantiate a Flask app object
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Declares a route that listens for a GET request to the path /hello
 # and a method to execute when that request comes in
@@ -16,24 +16,8 @@ def hello():
 
 @app.route('/books', methods=['GET'])
 def get():
-    return [
-  {
-    "title": "The Gruffalo",
-    "author": "Julia Donaldson"
-  },
-  {
-    "title": "Ada Twist, Scientist",
-    "author": "Andrea Beaty"
-  },
-  {
-    "title": "The Girl Who Drank the Moon",
-    "author": "Kelly Barnhill"
-  },
-  {
-    "title": "Dragons in a Bag",
-    "author": "Zetta Elliott"
-  }
-]
+    return render_template("books.html") 
+
 
 @app.route('/authors', methods=['GET'])
 def authors():

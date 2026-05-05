@@ -18,31 +18,31 @@ def test_get_books_returns_a_200():
     assert response.status_code == 200
 
 # a descriptive test name
-def test_get_books_returns_all_the_books():
+# def test_get_books_returns_all_the_books():
 
-    client = app.test_client()
-    response = client.get("/books")
+#     client = app.test_client()
+#     response = client.get("/books")
 
-    # here's where we assert that the response body contains all the books
-    # note that we need to call .json on the response
-    assert response.json == [
-    {
-        "title": "The Gruffalo",
-        "author": "Julia Donaldson"
-    },
-    {
-        "title": "Ada Twist, Scientist",
-        "author": "Andrea Beaty"
-    },
-    {
-        "title": "The Girl Who Drank the Moon",
-        "author": "Kelly Barnhill"
-    },
-    {
-        "title": "Dragons in a Bag",
-        "author": "Zetta Elliott"
-    }
-    ]
+#     # here's where we assert that the response body contains all the books
+#     # note that we need to call .json on the response
+#     assert response.json == [
+#     {
+#         "title": "The Gruffalo",
+#         "author": "Julia Donaldson"
+#     },
+#     {
+#         "title": "Ada Twist, Scientist",
+#         "author": "Andrea Beaty"
+#     },
+#     {
+#         "title": "The Girl Who Drank the Moon",
+#         "author": "Kelly Barnhill"
+#     },
+#     {
+#         "title": "Dragons in a Bag",
+#         "author": "Zetta Elliott"
+#     }
+#     ]
 
 def test_authors_route_returns_authors_list():
     client = app.test_client()
