@@ -10,18 +10,9 @@
     <h1>Books Acereads has available</h1>
     <br>
     <ul>
-        <li>The Gruffalo</li>
-        <li>Julia Donaldson</li>
-        <br>
-        <li>Ada Twist, Scientist</li>
-        <li>Andrea Beaty</li>
-        <br>
-        <li>The Girl Who Drank the Moon</li>
-        <li>Kelly Barnhill</li>
-        <br>
-        <li>Dragons in a Bag</li>
-        <li>Zetta Elliott</li>
-        
+        {% for book in books %}
+            <li>{{book.title}} by {{book.author}}</li>
+        {% endfor %}
     </ul>
     <br>
     <h4><a href='/'>Homepage</a></h4>

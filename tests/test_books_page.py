@@ -9,7 +9,7 @@ def test_books_title_correct(page: Page):
 def test_list_elements_have_correct_text(page: Page):
     page.goto("http://127.0.0.1:5001/books")
     li_items = page.locator('li')
-    assert li_items.all_inner_texts() == ['The Gruffalo', 'Julia Donaldson',
-                                    'Ada Twist, Scientist', 'Andrea Beaty',
-                                    'The Girl Who Drank the Moon', 'Kelly Barnhill',
-                                    'Dragons in a Bag', 'Zetta Elliott']
+    assert li_items.all_inner_texts() == ['The Gruffalo by Julia Donaldson',
+                                    'Ada Twist, Scientist by Andrea Beaty',
+                                    'The Girl Who Drank the Moon by Kelly Barnhill',
+                                    'Dragons in a Bag by Zetta Elliott']

@@ -2,26 +2,12 @@ body {
     background-color: #000000;
 }
 
-h1, h4, h5, p, ul {
-    color: #b77825;
-    display:flex;
-    justify-content:center;
+h1, h4, h5, p, ul, a {
+    color: #ffb759;
+    text-align:center;
 }
 
-a {
-    color:#ffffff;
-}
 
-div.list-container {
-    text-align: center;
-}
-
-ul.my-ul {
-    display: inline-block;
-    text-align: left;
-    list-style-type: none;
-    margin-left: auto;
-}
 
 .footer {
     position: fixed;
@@ -30,4 +16,4 @@ ul.my-ul {
     width: 100%;
     color: white;
     text-align: center;
-}
+} 
