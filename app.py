@@ -21,24 +21,7 @@ def get():
 
 @app.route('/authors', methods=['GET'])
 def authors():
-    return [
-        {
-    "name": "Julia Donaldson",
-    "dob": "1948-09-16"
-  },
-  {
-    "name": "Andrea Beaty",
-    "dob": "1961-10-08"
-  },
-  {
-    "name": "Kelly Barnhill",
-    "dob": "1973-01-01"
-  },
-  {
-    "name": "Zetta Elliott",
-    "dob": "1979-11-11"
-  }
-    ]
+    return render_template('authors.html')
 
 
 # make the server run in response to `python app.py`

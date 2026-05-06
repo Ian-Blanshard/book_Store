@@ -2,7 +2,7 @@ body {
     background-color: #000000;
 }
 
-h1, h5, p, ul {
+h1, h4, h5, p, ul {
     color: #b77825;
     display:flex;
     justify-content:center;

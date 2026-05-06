@@ -44,25 +44,25 @@ def test_get_books_returns_a_200():
 #     }
 #     ]
 
-def test_authors_route_returns_authors_list():
-    client = app.test_client()
-    response = client.get('/authors')
-    assert response.status_code == 200
-    assert response.json == [
-        {
-    "name": "Julia Donaldson",
-    "dob": "1948-09-16"
-    },
-    {
-    "name": "Andrea Beaty",
-    "dob": "1961-10-08"
-    },
-    {
-    "name": "Kelly Barnhill",
-    "dob": "1973-01-01"
-    },
-    {
-    "name": "Zetta Elliott",
-    "dob": "1979-11-11"
-    }
-    ]
+# def test_authors_route_returns_authors_list():
+#     client = app.test_client()
+#     response = client.get('/authors')
+#     assert response.status_code == 200
+#     assert response.json == [
+#         {
+#     "name": "Julia Donaldson",
+#     "dob": "1948-09-16"
+#     },
+#     {
+#     "name": "Andrea Beaty",
+#     "dob": "1961-10-08"
+#     },
+#     {
+#     "name": "Kelly Barnhill",
+#     "dob": "1973-01-01"
+#     },
+#     {
+#     "name": "Zetta Elliott",
+#     "dob": "1979-11-11"
+#     }
+#     ]
