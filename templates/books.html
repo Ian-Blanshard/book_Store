@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
-    <title>Books</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+{% block title %} Books {% endblock %}
+    {% block content%}
     <h1>Books Acereads has available</h1>
     <br>
     <ul>
@@ -16,13 +10,4 @@
     </ul>
     <br>
     <h4><a href='/'>Homepage</a></h4>
-</body>
-<footer>
-    <h5>
-        Visit us on social media
-    </h5>
-    <ul><a href='https://www.facebook.com' target='_blank'>Visit our Facebook</a></ul>
-    <ul><a href='https://www.instagram.com' target='_blank'>Visit our Instagram</a></ul>
-    <ul><a href='https://www.tiktok.com' target='_blank'>Visit our TikTok</a></ul>
-</footer>
-</html>
+    {% endblock %}

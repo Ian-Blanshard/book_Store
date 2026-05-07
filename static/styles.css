@@ -3,7 +3,7 @@ body {
 }
 
 h1, h4, h5, p, ul, a {
-    color: #ffb759;
+    color: #c8c5c2;
     text-align:center;
 }
 
@@ -14,6 +14,6 @@ h1, h4, h5, p, ul, a {
     left: 0;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: #c8c5c2;
     text-align: center;
 } 
