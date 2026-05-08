@@ -1,12 +1,12 @@
 class Book():
 
-    def __init__(self, id, title, author):
+    def __init__(self, title, author, id = None):
         self.id = id
         self.title = title
         self.author = author
 
     def __repr__(self):
-        return f'Book({self.id}, {self.title}, {self.author})'
+        return f'Book({self.title}, {self.author}, {self.id})'
     
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

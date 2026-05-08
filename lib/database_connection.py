@@ -1,11 +1,14 @@
 import psycopg
 from psycopg.rows import dict_row
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # This class helps us interact with the database.
 
 class DatabaseConnection:
-    DATABASE_NAME = "book_store" # <-- CHANGE THIS!
+    DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store_test') 
+    DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
 
     def __init__(self):
         self.connection = None
@@ -15,7 +18,7 @@ class DatabaseConnection:
     def connect(self):
         try:
             self.connection = psycopg.connect(
-                f"postgresql://localhost/{self.DATABASE_NAME}",
+                f"postgresql://{self.DATABASE_HOST}/{self.DATABASE_NAME}",
                 row_factory=dict_row)
 
         except psycopg.OperationalError:
