@@ -22,7 +22,7 @@ class DatabaseConnection:
         try:
             # Added {self.DATABASE_USER}@ before the host
             self.connection = psycopg.connect(
-                f"postgresql://{self.DATABASE_HOST}/{self.DATABASE_NAME}",
+                f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}/{self.DATABASE_NAME}",
                 row_factory=dict_row
             )
 
