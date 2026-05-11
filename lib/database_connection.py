@@ -9,7 +9,7 @@ load_dotenv()
 class DatabaseConnection:
     # if you want to use the dev db book_store_test locally it must be assigned when starting
     # app.py - DATABASE_NAME = book_store_test.py 
-    DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store_test') 
+    DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store') 
     # DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
     POSTGRES_USER = os.getenv('POSTGRES_USER')
     POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
