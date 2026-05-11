@@ -23,7 +23,7 @@ class DatabaseConnection:
     def connect(self):
         try:
             # Added {self.DATABASE_USER}@ before the host
-            if os.getenv('GITHUB_ACTIONS'):
+            if os.getenv('DEPLOYED'):
                 database_connection_string = f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.DATABASE_HOST}/{self.DATABASE_NAME}"
             else:
                 database_connection_string = "postgresql://127.0.0.1/book_store"
