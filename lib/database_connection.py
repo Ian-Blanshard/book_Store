@@ -9,7 +9,7 @@ load_dotenv()
 class DatabaseConnection:
     # if you want to use the dev db book_store_test locally it must be assigned when starting
     # app.py - DATABASE_NAME = book_store_test.py 
-    DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store_test') 
+    DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store') 
     DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
     POSTGRES_USER = os.getenv('POSTGRES_USER')
     POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
@@ -23,8 +23,14 @@ class DatabaseConnection:
     def connect(self):
         try:
             # Added {self.DATABASE_USER}@ before the host
+            if os.getenv('GITHUB_ACTIONS'):
+                database_connection_string = f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.DATABASE_HOST}/{self.DATABASE_NAME}"
+            else:
+                database_connection_string = "postgresql://127.0.0.1/book_store"
+            # f"postgresql://127.0.0.1/book_store"
+
             self.connection = psycopg.connect(
-                f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.DATABASE_HOST}/{self.DATABASE_NAME}",
+                database_connection_string,
                 row_factory=dict_row
             )
 
