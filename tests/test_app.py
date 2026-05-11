@@ -26,3 +26,13 @@ def test_team_route_returns_200():
     response = client.get('/team')
     assert response.status_code == 200
 
+def test_users_returns_200():
+    client = app.test_client()
+    response = client.get('/users')
+    assert response.status_code == 200
+
+def test_users_returns_form():
+    client = app.test_client()
+    response = client.get('/users')
+    assert '<form method="POST" action="/users">' in response.data.decode('utf-8')
+

@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from lib.database_connection import DatabaseConnection
 from lib.book_repository import BookRepository
+from lib.user_repository import UserRepository
 from lib.book import Book
-
+from lib.user import User
+import os
 # instantiate a Flask app object
 app = Flask(__name__, static_folder='static')
 
@@ -16,6 +18,8 @@ def index():
 def get_all_books():
     connection = DatabaseConnection()
     connection.connect()
+    print(f'DATABASE_HOST = {os.getenv('DATABASE_HOST')}')
+    print(f'DATABASE_NAME = {os.getenv('DATABASE_NAME')}')
     repository = BookRepository(connection).all()
     return render_template("books.html", books= repository)
 
@@ -27,6 +31,21 @@ def add_book_to_database():
     repository = BookRepository(connection)
     repository.add_book(Book(data['title'], data['author']))
     return redirect('/books')
+
+@app.route('/users', methods=['GET'])
+def get_user_form():
+    return render_template('signup_form.html')
+
+@app.route('/users', methods=['POST'])
+def add_user():
+    connection = DatabaseConnection()
+    connection.connect()
+    data = request.form
+    repository = UserRepository(connection)
+    repository.add_new_user(User(data['username'], data['password']))
+    return redirect('/')
+
+
 
 @app.route('/team', methods=['GET'])
 def get_team():

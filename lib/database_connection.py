@@ -3,12 +3,15 @@ from psycopg.rows import dict_row
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-# This class helps us interact with the database.
+# load variables from .env file
+load_dotenv() 
 
 class DatabaseConnection:
+    # if you want to use the dev db book_store_test locally it must be assigned when starting
+    # app.py - DATABASE_NAME = book_store_test.py 
     DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store_test') 
     DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
+
 
     def __init__(self):
         self.connection = None
@@ -17,9 +20,11 @@ class DatabaseConnection:
     # to localhost and select the database name given in argument.
     def connect(self):
         try:
+            # Added {self.DATABASE_USER}@ before the host
             self.connection = psycopg.connect(
                 f"postgresql://{self.DATABASE_HOST}/{self.DATABASE_NAME}",
-                row_factory=dict_row)
+                row_factory=dict_row
+            )
 
         except psycopg.OperationalError:
             raise Exception(f"Couldn't connect to the database {self.DATABASE_NAME}! " \

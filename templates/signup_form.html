@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %} Add User {% endblock %}
+{% block content %}
+    <h1>Add New User</h1>
+    <br>
+    <form method="POST" action="/users">
+        <input type="text" name="username" placeholder="Username" required>
+        <br>
+        <input type="text" name="password" placeholder="Password" required>
+        <br>
+        <input class="btn btn-dark" type="submit">
+    </form>
+    <br>
+    <h4><a href='/'>Homepage</a></h4>
+{% endblock %}
