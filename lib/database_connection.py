@@ -10,7 +10,9 @@ class DatabaseConnection:
     # if you want to use the dev db book_store_test locally it must be assigned when starting
     # app.py - DATABASE_NAME = book_store_test.py 
     DATABASE_NAME = os.getenv('DATABASE_NAME', 'book_store_test') 
-    DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
+    # DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
+    POSTGRES_USER = os.getenv('POSTGRES_USER')
+    POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
 
     def __init__(self):
@@ -22,7 +24,7 @@ class DatabaseConnection:
         try:
             # Added {self.DATABASE_USER}@ before the host
             self.connection = psycopg.connect(
-                f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}/{self.DATABASE_NAME}",
+                f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}/{self.DATABASE_NAME}",
                 row_factory=dict_row
             )
 
