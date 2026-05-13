@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_NAME: book_store
+      DATABASE_NAME: book_store_test
 
     services:
       postgres:
@@ -15,7 +15,7 @@ jobs:
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_USER: runner
-          POSTGRES_DB: book_store
+          POSTGRES_DB: book_store_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -41,8 +41,9 @@ jobs:
 
       - name: Seed database
         run: |
-          psql -h 127.0.0.1 -U runner book_store -f seeds/books_seed.sql
-          psql -h 127.0.0.1 -U runner book_store -f seeds/user_seeds.sql
+          psql -h 127.0.0.1 -U runner book_store_test -f seeds/table_creation.sql
+          psql -h 127.0.0.1 -U runner book_store_test -f seeds/books_seed.sql
+          psql -h 127.0.0.1 -U runner book_store_test -f seeds/user_seeds.sql
 
       - name: Start web app
         run: nohup python app.py > app.log 2>&1 &
