@@ -1,12 +1,14 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from lib.database_connection import DatabaseConnection
 from lib.book_repository import BookRepository
 from lib.user_repository import UserRepository
+from lib.authenticated import is_authenticated
 from lib.book import Book
 from lib.user import User
-import os
+from lib.login_required import login_required
 # instantiate a Flask app object
 app = Flask(__name__, static_folder='static')
+app.secret_key = "some_really_secret_key"
 
 
 # app routes
@@ -18,12 +20,11 @@ def index():
 def get_all_books():
     connection = DatabaseConnection()
     connection.connect()
-    print(f'DATABASE_HOST = {os.getenv('DATABASE_HOST')}')
-    print(f'DATABASE_NAME = {os.getenv('DATABASE_NAME')}')
     repository = BookRepository(connection).all()
     return render_template("books.html", books= repository)
 
 @app.route('/books', methods=['POST'])
+@login_required
 def add_book_to_database():
     connection = DatabaseConnection()
     connection.connect()
@@ -45,7 +46,23 @@ def add_user():
     repository.add_new_user(User(data['username'], data['password']))
     return redirect('/')
 
+@app.route('/sessions/new', methods=['GET'])
+def show_login_form():
+    return render_template('login_form.html')
 
+@app.route('/sessions', methods=['POST'])
+def submit_login_form():
+    connection = DatabaseConnection()
+    connection.connect()
+    repository = UserRepository(connection)
+    username, password = request.form['username'], request.form['password']
+    user = repository.find_user(username)
+    if password == user.password:
+        session['username'] = user.username
+        session['user_id'] = user.id
+        return redirect('/')
+    else:
+        return redirect('sessions/new')
 
 @app.route('/team', methods=['GET'])
 def get_team():

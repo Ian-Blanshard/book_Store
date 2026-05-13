@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %} Add User {% endblock %}
+{% block content %}
+    <h1>Login</h1>
+    <br>
+    <form method="POST" action="/sessions">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <input class="btn btn-dark" type="submit">
+    </form>
+    <br>
+    <h4><a href='/'>Homepage</a></h4>
+{% endblock %}
