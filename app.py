@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from lib.database_connection import DatabaseConnection
 from lib.book_repository import BookRepository
 from lib.user_repository import UserRepository
+from lib.film_repository import FilmRepository
 from lib.authenticated import is_authenticated
 from lib.book import Book
 from lib.user import User
@@ -72,6 +73,14 @@ def get_team():
 @app.route('/authors', methods=['GET'])
 def authors():
     return render_template('authors.html')
+
+@app.route('/films', methods=['GET'])
+def get_all_films():
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    films = film_repository.all()
+    return render_template("films.html", films=films), 200
 
 # make the server run in response to `python app.py`
 # on port 5001 (you'll learn more about what this means later)

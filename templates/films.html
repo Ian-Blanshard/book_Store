@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %} Books {% endblock %}
+    {% block content%}
+    <h1>Films Acereads has available</h1>
+    <br>
+    <ul class="list-group list-group-flush">
+        {% for film in films %}
+            <li class="list-group-item">{{film.title}} released {{film.release_year}}</li>
+            <br>
+            {% endfor %}
+    </ul>
+    <br>
+
+    <h4><a href='/'>Homepage</a></h4>
+    {% endblock %}

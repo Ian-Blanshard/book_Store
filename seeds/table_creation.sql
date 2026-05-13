@@ -9,3 +9,9 @@ CREATE TABLE IF NOT EXISTS users (
     username TEXT,
     password TEXT
 );
+
+CREATE TABLE films (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    release_year int
+);
