@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %} Books {% endblock %}
+{% block title %} Films {% endblock %}
     {% block content%}
     <h1>Films Acereads has available</h1>
     <br>
@@ -10,6 +10,14 @@
             {% endfor %}
     </ul>
     <br>
-
+    <h4 >Add a New Film</h4>
+    <form  method="POST" action="/films">
+        <input type="text" name="title" placeholder="Film title" required>
+        <br>
+        <input type="number" name="release_year" placeholder="Release year" required>
+        <br>
+        <input class="btn btn-dark" type="submit">
+    </form> 
+    <br>
     <h4><a href='/'>Homepage</a></h4>
     {% endblock %}

@@ -6,6 +6,7 @@ from lib.film_repository import FilmRepository
 from lib.authenticated import is_authenticated
 from lib.book import Book
 from lib.user import User
+from lib.film import Film
 from lib.login_required import login_required
 # instantiate a Flask app object
 app = Flask(__name__, static_folder='static')
@@ -74,13 +75,26 @@ def get_team():
 def authors():
     return render_template('authors.html')
 
+
+# # ======== FILMS ROUTES ========
+
 @app.route('/films', methods=['GET'])
 def get_all_films():
     connection = DatabaseConnection()
     connection.connect()
     film_repository = FilmRepository(connection)
     films = film_repository.all()
-    return render_template("films.html", films=films), 200
+    return render_template("films.html", films=films)
+
+@app.route('/films', methods=["POST"])
+def create_new_film():
+    connection = DatabaseConnection()
+    connection.connect()
+    repo = FilmRepository(connection)
+    film = request.form
+    repo.add(Film(title=film['title'], release_year=film['release_year']))
+    return redirect('/films')
+
 
 # make the server run in response to `python app.py`
 # on port 5001 (you'll learn more about what this means later)

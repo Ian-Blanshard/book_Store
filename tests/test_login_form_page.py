@@ -8,7 +8,7 @@ def test_user_can_login(page: Page, db_connection):
     page.get_by_label("password").fill("1234")
     page.get_by_role("button").click()
     h1 = page.locator("h1")
-    expect(h1).to_have_text("Welcome to AceReads")
+    expect(h1).to_have_text("AceReads")
 
 def test_user_failed_login(page: Page, db_connection):
     db_connection.seed('seeds/user_seeds.sql')

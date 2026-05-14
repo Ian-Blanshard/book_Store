@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 
-
 def test_books_title_correct(page: Page):
     page.goto("http://127.0.0.1:5001/books")
     h1 = page.locator('h1')
@@ -27,7 +26,6 @@ def test_add_book_form(page: Page, db_connection):
     page.get_by_placeholder("Title").fill("The Chroicles of Geronimo (the cat)")
     page.get_by_placeholder("Author").fill("Geronimo")
     page.get_by_role("button", name="Submit").click()
-    page.goto("http://127.0.0.1:5001/books")
     li_items = page.locator('.list-group-item')
     assert li_items.all_inner_texts() == ['The Gruffalo by Julia Donaldson',
                                     'Ada Twist, Scientist by Andrea Beaty',
