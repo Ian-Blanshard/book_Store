@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %} Add Book {% endblock %}
+{% block content %}
+<h3>Add a New Film</h3>
+<br>
+<div class="list-container mx-auto col-4">
+    <form  method="POST" action="/new_film">
+        <ul class="list-group">
+            <li class="form-list">
+                <label for="film_title"> Film title</label>
+            </li>    
+            <li >
+                <input  id="film_title" type="text" name="title" required>
+            </li>
+            <li class="form-list">
+                <label for="release_year">Release year</label>
+            </li>
+            <li >
+                <input id="release_year" type="number" name="release_year" required>
+            </li>
+            <li class="text-end">
+                <input class="btn btn-dark form-button" type="submit">
+            </li>
+        </ul>
+    </form>
+    </div>
+<div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
+{% endblock %}

@@ -8,15 +8,32 @@ from lib.book import Book
 from lib.user import User
 from lib.film import Film
 from lib.login_required import login_required
+
 # instantiate a Flask app object
 app = Flask(__name__, static_folder='static')
 app.secret_key = "some_really_secret_key"
 
+# ========================================================================== #
+# ======================= GENERAL PAGES ROUTES ============================= #
+# ========================================================================== #
 
 # app routes
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
+
+@app.route('/team', methods=['GET'])
+def get_team():
+    team = ["Dorothy", "Rose", "Blanche", "Sophia"]
+    return render_template("team.html", team=team)
+
+@app.route('/authors', methods=['GET'])
+def authors():
+    return render_template('authors.html')
+
+# ========================================================================== #
+# ================================ BOOK ROUTES ============================= #
+# ========================================================================== #
 
 @app.route('/books', methods=['GET'])
 def get_all_books():
@@ -25,7 +42,12 @@ def get_all_books():
     repository = BookRepository(connection).all()
     return render_template("books.html", books= repository)
 
-@app.route('/books', methods=['POST'])
+@app.route('/new_book', methods=['GET'])
+@login_required
+def add_book_form():
+    return render_template('add_new_book.html')
+
+@app.route('/new_book', methods=['POST'])
 @login_required
 def add_book_to_database():
     connection = DatabaseConnection()
@@ -34,6 +56,37 @@ def add_book_to_database():
     repository = BookRepository(connection)
     repository.add_book(Book(data['title'], data['author']))
     return redirect('/books')
+
+# ========================================================================== #
+# =============================== FILMS ROUTES ============================= #
+# ========================================================================== #
+
+@app.route('/films', methods=['GET'])
+def get_all_films():
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    films = film_repository.all()
+    return render_template("films.html", films=films)
+
+@app.route('/new_film', methods=['GET'])
+@login_required
+def add_film_form():
+    return render_template('add_new_film.html')
+
+@app.route('/new_film', methods=["POST"])
+@login_required
+def create_new_film():
+    connection = DatabaseConnection()
+    connection.connect()
+    repo = FilmRepository(connection)
+    film = request.form
+    repo.add(Film(title=film['title'], release_year=film['release_year']))
+    return redirect('/films')
+
+# ========================================================================== #
+# ========================== USER/LOGIN ROUTES ============================= #
+# ========================================================================== #
 
 @app.route('/users', methods=['GET'])
 def get_user_form():
@@ -65,35 +118,11 @@ def submit_login_form():
         return redirect('/')
     else:
         return redirect('sessions/new')
-
-@app.route('/team', methods=['GET'])
-def get_team():
-    team = ["Dorothy", "Rose", "Blanche", "Sophia"]
-    return render_template("team.html", team=team)
-
-@app.route('/authors', methods=['GET'])
-def authors():
-    return render_template('authors.html')
-
-
-# # ======== FILMS ROUTES ========
-
-@app.route('/films', methods=['GET'])
-def get_all_films():
-    connection = DatabaseConnection()
-    connection.connect()
-    film_repository = FilmRepository(connection)
-    films = film_repository.all()
-    return render_template("films.html", films=films)
-
-@app.route('/films', methods=["POST"])
-def create_new_film():
-    connection = DatabaseConnection()
-    connection.connect()
-    repo = FilmRepository(connection)
-    film = request.form
-    repo.add(Film(title=film['title'], release_year=film['release_year']))
-    return redirect('/films')
+    
+@app.route('/logout', methods=['GET'])
+def logout():
+    session.clear()
+    return redirect('/')
 
 
 # make the server run in response to `python app.py`

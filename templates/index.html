@@ -1,20 +1,19 @@
 {% extends 'layout.html' %}
 {% block title %} Welcome {% endblock %}
-
     {% block content%}
     <h1>AceReads</h1>
     <br>
     <h5>Welcome to Acereads make a selection from our menu below</h5>
     <br>
-    <div class="list-container card mx-auto col-6">
-    <ul class="my-ul list-group list-group-flush">
+    <div class="list-container mx-auto col-4">
+    <ul class="list-group list-group-flush">
         <li class="list-group-item"><h5><a href='/books'>View All Books</a></h5></li>
-
         <li class="list-group-item"><h5><a href='/authors'>View All Authors</a></h5></li>
-  
         <li class="list-group-item"><h5><a href='/films'>View All Films</a></h5></li>
-
         <li class="list-group-item"><h5><a href='/team'>Meet Our Team</a></h5></li>
+        {% if not session.get('user_id') %}
+        <li class="list-group-item"><h5><a href='/sessions/new'>Login</a></h5></li>
+        {% endif %}
     </ul>
     </div>
     <br>

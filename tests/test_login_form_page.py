@@ -17,6 +17,6 @@ def test_user_failed_login(page: Page, db_connection):
     page.get_by_label("username").fill("test_user1")
     page.get_by_label("password").fill("wrongpassword")
     page.get_by_role("button").click()
-    h1 = page.locator("h1")
-    expect(h1).to_have_text("Login")
+    h3 = page.locator("h3")
+    expect(h3).to_have_text("Login")
 

@@ -37,21 +37,37 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/team">Our Team</a>
-        <li class="nav-item">
-          <a class="nav-link" href="/users">Add User</a>
-        </li>
+        </li> 
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {% if not session.get('user_id') %}
         <li class="nav-item">
           <a class="nav-link" href="/sessions/new">Login</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users">Create user</a>
         </li>
+        {% endif %}
+        {% if session.get('user_id') %}
+        <li class="nav-item">
+          <a class="nav-link" href="/new_book">Add Book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/new_film">Add Film</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>
 </nav>
+
 <br>
     {% block content %}{% endblock%}
     <footer class="footer">
-    <h5>
+    <h5 class="footer-text">
         Visit us on social media
     </h5>
           <a

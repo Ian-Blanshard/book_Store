@@ -1,13 +1,17 @@
 {% extends 'layout.html' %}
 {% block title %} Our Team {% endblock %}
 {% block content%}
-<h1>Team</h1>
-
-<p>AceBooks was created by...</p>
-
-<ul>
+<br>
+<h3>AceBooks was created by...</h3>
+<br>
+<div class="list-container mx-auto col-4">
+<ul class="list-group list-group-flush">
   {% for team_member in team %}
-    <li>{{ team_member }}</li>
+    <li class="list-group-item">{{ team_member }}</li>
   {% endfor %}
 </ul>
+</div>
+<div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
 {% endblock %}

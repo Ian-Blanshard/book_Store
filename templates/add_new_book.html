@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %} Add Book {% endblock %}
+{% block content %}
+<h3>Add a New Book</h3>
+<br>
+    <div class="list-container mx-auto col-4">
+    <form  method="POST" action="/new_book">
+        <ul class="list-group ">
+            <li class="form-list">
+                <label for="title">Title</label>
+                </li>
+                <li>
+                <input id="title" type="text" name="title"required>
+            </li>
+            <li class="form-list">
+                <label for="author">Author</label>
+                </li>
+                <li>
+                <input id="author" type="text" name="author" required>
+            </li>
+            <li class="text-end">
+                <input class="btn btn-dark form-button" type="submit">
+            </li>
+        </ul>
+    </form>
+    </div>
+    <div class="fixed-bottom text-center">
+        <h5><a href='/'>Home</a></h5>
+    </div>
+{% endblock %}

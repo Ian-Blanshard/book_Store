@@ -1,11 +1,11 @@
 from app import app
 from lib.film import Film
 from lib.film_repository import FilmRepository
+from flask import session
 
-def test_creating_film_by_a_route(db_connection):
-    client = app.test_client()
+def test_creating_film_by_a_route(db_connection, logged_in_client):
     db_connection.seed("seeds/films.sql")
-    response = client.post('/films', 
+    response = logged_in_client.post('/new_film', 
                             data= {
                                 'title': 'A Complete Unknown',
                                 'release_year': 2024,

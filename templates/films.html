@@ -1,23 +1,16 @@
 {% extends 'layout.html' %}
 {% block title %} Films {% endblock %}
     {% block content%}
-    <h1>Films Acereads has available</h1>
+    <h3>Films Acereads has available</h3>
     <br>
+    <div class="list-container mx-auto col-4">
     <ul class="list-group list-group-flush">
         {% for film in films %}
             <li class="list-group-item">{{film.title}} released {{film.release_year}}</li>
-            <br>
             {% endfor %}
     </ul>
-    <br>
-    <h4 >Add a New Film</h4>
-    <form  method="POST" action="/films">
-        <input type="text" name="title" placeholder="Film title" required>
-        <br>
-        <input type="number" name="release_year" placeholder="Release year" required>
-        <br>
-        <input class="btn btn-dark" type="submit">
-    </form> 
-    <br>
-    <h4><a href='/'>Homepage</a></h4>
+    </div>
+    <div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
     {% endblock %}

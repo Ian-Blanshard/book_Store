@@ -3,8 +3,9 @@ body, li {
     font-family:'roboto', sans-serif;
     font-weight: 200;
 }
-h1, h4, h5 {
+h1, h3, h4, h5 {
     font-family:'montserrat', sans-serif;
+    margin: 0px;
 }
 
 li, a {
@@ -28,3 +29,29 @@ li, a {
 .spacer {
     margin: 20px;
 }
+
+.footer-text {
+    margin: 10px;
+}
+
+.list-group-item {
+    padding: 25px;
+}
+
+.list-text {
+    font-size: 20px;
+}
+
+.form-list{
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.form-button {
+    margin: 40px 20px;
+}
+
+.fixed-bottom {
+    margin-bottom: 120px;
+}
+

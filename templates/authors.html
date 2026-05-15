@@ -1,14 +1,17 @@
 {% extends 'layout.html' %}
 {% block title %} Authors {% endblock %}
     {% block content%}
-    <h1>Authors which Acereads stocks</h1>
+    <h3>Authors which Acereads stocks</h3>
     <br>
+    <div class="list-container mx-auto col-4">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Julia Donaldson <br> 1948-09-16</li>
         <li class="list-group-item">Andrea Beaty <br> 1961-10-08</li>
         <li class="list-group-item">Kelly Barnhill <br> 1973-01-01</li>
         <li class="list-group-item">Zetta Elliott <br> 1979-11-11</li>
     </ul>
-    <br>
-    <h4><a href='/'>Homepage</a></h4>
+    </div>
+    <div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
     {% endblock %}

@@ -1,17 +1,31 @@
 {% extends 'layout.html' %}
 {% block title %} Add User {% endblock %}
 {% block content %}
-    <h1>Login</h1>
+    <h3>Login</h3>
     <br>
+    <div class="list-container mx-auto col-4">
     <form method="POST" action="/sessions">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" required>
-        <br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-        <input class="btn btn-dark" type="submit">
+    <ul class="list-group">
+        <li class="form-list">
+            <label for="username">Username</label>
+            </li>
+            <li>
+            <input type="text" name="username" id="username" required>
+        </li>
+        <li class="form-list">
+            <label for="password">Password</label>
+            </li>
+            <li>
+            <input type="password" name="password" id="password" required>
+        </li>
+        <li class="text-end">
+            <input class="btn btn-dark form-button" type="submit">
+        </li>
+    </ul>
     </form>
-    <br>
-    <h4><a href='/'>Homepage</a></h4>
+    </div>
+      <br>
+    <div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
 {% endblock %}

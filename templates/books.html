@@ -1,23 +1,17 @@
 {% extends 'layout.html' %}
 {% block title %} Books {% endblock %}
     {% block content%}
-    <h1>Books Acereads has available</h1>
+    <h3>Books Acereads has available</h3>
     <br>
+    <div class="list-container mx-auto col-4">
     <ul class="list-group list-group-flush">
         {% for book in books %}
             <li class="list-group-item">{{book.title}} by {{book.author}}</li>
             <br>
             {% endfor %}
     </ul>
-    <br>
-    <h4 >Add a New Book</h4>
-    <form  method="POST" action="/books">
-        <input type="text" name="title" placeholder="Title" required>
-        <br>
-        <input type="text" name="author" placeholder="Author" required>
-        <br>
-        <input class="btn btn-dark" type="submit">
-    </form> 
-    <br>
-    <h4><a href='/'>Homepage</a></h4>
-    {% endblock %}
+    </div>
+    <div class="fixed-bottom text-center">
+    <h5><a href='/'>Home</a></h5>
+    </div>
+{% endblock %}
