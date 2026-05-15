@@ -112,10 +112,13 @@ def submit_login_form():
     repository = UserRepository(connection)
     username, password = request.form['username'], request.form['password']
     user = repository.find_user(username)
-    if password == user.password:
-        session['username'] = user.username
-        session['user_id'] = user.id
-        return redirect('/')
+    if user:
+        if password == user.password:
+            session['username'] = user.username
+            session['user_id'] = user.id
+            return redirect('/')
+        else:
+            return redirect('sessions/new') 
     else:
         return redirect('sessions/new')
     

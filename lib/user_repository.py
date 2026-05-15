@@ -26,9 +26,12 @@ class UserRepository():
         """
         returns a User instance when the username is provided
         """
-        user_details = self.connection.execute('SELECT * FROM users WHERE username=%s', [user])[0]
-        return User(
-            user_details['username'],
-            user_details['password'],
-            user_details['id'],
-        )
+        try:
+            user_details = self.connection.execute('SELECT * FROM users WHERE username=%s', [user])[0]
+            return User(
+                user_details['username'],
+                user_details['password'],
+                user_details['id'],
+            )   
+        except IndexError:
+            return None

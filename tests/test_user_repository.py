@@ -48,7 +48,7 @@ def test_login_for_auth(db_connection):
 """
 tests that a unsuccesful login attempt performs as expected
 """
-def test_user_failed_login_responds_correctly(db_connection):
+def test_user_failed_login_responds_correctly_incorrect_password(db_connection):
     db_connection.seed('seeds/user_seeds.sql')
     client = app.test_client()
     repository = UserRepository(db_connection)
@@ -56,5 +56,16 @@ def test_user_failed_login_responds_correctly(db_connection):
     repository.add_new_user(user)
     response = client.post('/sessions', data = {
         'username' : 'testuser2', 'password' : 'wrongpassword'
+        })
+    assert response.headers['Location'] == 'sessions/new'
+
+def test_user_failed_login_responds_correctly_incorrect_username(db_connection):
+    db_connection.seed('seeds/user_seeds.sql')
+    client = app.test_client()
+    repository = UserRepository(db_connection)
+    user = User('testuser2', 'testpassword2', 2)
+    repository.add_new_user(user)
+    response = client.post('/sessions', data = {
+        'username' : 'nottestuser', 'password' : 'wrongpassword'
         })
     assert response.headers['Location'] == 'sessions/new'
